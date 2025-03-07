@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 const Signup = () => {
   // const notify = () => toast("Wow so easy!");
   const navigate = useNavigate();
-  const host = "http://localhost:1818";
+  const host = "https://passmanager-back-auth-production.up.railway.app";
   const [form, setForm] = useState({
     name: "",
     email: "",

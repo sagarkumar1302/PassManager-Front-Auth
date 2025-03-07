@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
-  const host = "http://localhost:1818";
+  const host = "https://passmanager-back-auth-production.up.railway.app";
   const [form, setForm] = useState({
     email: "",
     password: "",
