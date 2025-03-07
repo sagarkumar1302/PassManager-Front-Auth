@@ -15,7 +15,7 @@ const Manager = () => {
   const [editId, setEditId] = useState(null);
   const fetchPasswords = async () => {
     try {
-      const res = await axios.get(`${host}`);
+      const res = await axios.get(`${host}/`);
       const userData = res.data.filter(item => 
         item.userid === localStorage.getItem("loggedInUserId")
       );
