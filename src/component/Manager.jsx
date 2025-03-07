@@ -4,22 +4,28 @@ import { ToastContainer, toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 const Manager = () => {
-    const host = "https://passmanager-back-auth-production.up.railway.app";
+  const host = "https://passmanager-back-auth-production.up.railway.app";
   const [loggedInUser, setLoggedInUser] = useState("");
   const ref = useRef();
   const [show, setShow] = useState(false);
-  const [form, setForm] = useState({ appname: "", appusername: "", apppassword: "", userid: "" });
+  const [form, setForm] = useState({
+    appname: "",
+    appusername: "",
+    apppassword: "",
+    userid: "",
+  });
   const [passArray, setPassArray] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idDel, setIddel] = useState();
   const [editId, setEditId] = useState(null);
   const fetchPasswords = async () => {
     try {
-      const res = await axios.get(`${host}/`);
-      const userData = res.data.filter(item => 
-        item.userid === localStorage.getItem("loggedInUserId")
+      const res = await axios.get(`${host}`);
+      console.log(res);
+      const userData = res.data.filter(
+        (item) => item.userid === localStorage.getItem("loggedInUserId")
       );
-      
+
       setPassArray(userData);
       setLoggedInUser(localStorage.getItem("loggedInUser"));
     } catch (error) {
@@ -68,17 +74,11 @@ const Manager = () => {
     try {
       if (editId) {
         // **Update existing entry**
-        await axios.put(
-          `${host}/update/${editId}`,
-          payload
-        );
+        await axios.put(`${host}/update/${editId}`, payload);
         toast.success("Password updated successfully!");
       } else {
         // **Create new entry**
-        await axios.post(
-          `${host}/register`,
-          payload
-        );
+        await axios.post(`${host}/register`, payload);
         toast.success("Password saved successfully!");
       }
 
@@ -166,14 +166,10 @@ const Manager = () => {
   };
   const deleteHandler = async () => {
     try {
-      await axios.delete(
-        `${host}/delete/${idDel}`
-      );
+      await axios.delete(`${host}/delete/${idDel}`);
       let updatedForm = passArray.filter((item) => item.id !== idDel);
       // setPassArray([...updatedForm]);
-      const { data } = await axios.get(
-        `${host}`
-      );
+      const { data } = await axios.get(`${host}`);
       setPassArray(data);
       setIsModalOpen(false);
       toast("🦄 Deleted Password", {
@@ -199,8 +195,8 @@ const Manager = () => {
       appname: selectedItem.appname,
       appusername: selectedItem.appusername,
       apppassword: selectedItem.apppassword,
-      userid : selectedItem.userid,
-       // Ensure correct field names
+      userid: selectedItem.userid,
+      // Ensure correct field names
     });
     setEditId(id);
     // No need to remove the item from the state at this step
