@@ -11,7 +11,7 @@ const RefreshHanlder = ({setIsAuthenticated}) => {
             location.pathname==="/login" ||
             location.pathname==="/signup"
         ){
-            navigate("/home")
+            navigate("/home", {replace:false});
         }
       }
     }, [setIsAuthenticated, navigate])
