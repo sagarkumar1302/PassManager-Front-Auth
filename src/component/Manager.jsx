@@ -22,7 +22,6 @@ const Manager = () => {
   const fetchPasswords = async () => {
     try {
       const res = await axios.get(`${host}`);
-      console.log(res);
       const userData = res.data.filter(
         (item) => item.userid === localStorage.getItem("loggedInUserId")
       );
