@@ -4,7 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 const Manager = () => {
-  const host = "https://passmanager-back-auth-production.up.railway.app/application";
+  const host =
+    "https://passmanager-back-auth-production.up.railway.app/application";
   const [loggedInUser, setLoggedInUser] = useState("");
   const ref = useRef();
   const [show, setShow] = useState(false);
@@ -167,10 +168,13 @@ const Manager = () => {
   const deleteHandler = async () => {
     try {
       await axios.delete(`${host}/delete/${idDel}`);
-      let updatedForm = passArray.filter((item) => item.id !== idDel);
+      //   let updatedForm = passArray.filter((item) => item.id !== idDel);
       // setPassArray([...updatedForm]);
-    //   const { data } = await axios.get(`${host}`);
-      setPassArray(updatedForm);
+      const  res  = await axios.get(`${host}`);
+      const userData = res.data.filter(
+        (item) => item.userid === localStorage.getItem("loggedInUserId")
+      );
+      setPassArray(userData);
       setIsModalOpen(false);
       toast("🦄 Deleted Password", {
         position: "top-right",
