@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 const Manager = () => {
-  const host = "https://passmanager-back-auth-production.up.railway.app";
+  const host = "https://passmanager-back-auth-production.up.railway.app/application";
   const [loggedInUser, setLoggedInUser] = useState("");
   const ref = useRef();
   const [show, setShow] = useState(false);
