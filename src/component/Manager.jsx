@@ -169,8 +169,8 @@ const Manager = () => {
       await axios.delete(`${host}/delete/${idDel}`);
       let updatedForm = passArray.filter((item) => item.id !== idDel);
       // setPassArray([...updatedForm]);
-      const { data } = await axios.get(`${host}`);
-      setPassArray(data);
+    //   const { data } = await axios.get(`${host}`);
+      setPassArray(updatedForm);
       setIsModalOpen(false);
       toast("🦄 Deleted Password", {
         position: "top-right",
